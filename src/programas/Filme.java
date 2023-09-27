@@ -1,6 +1,8 @@
 package programas;
 
-public class Filme extends Titulo {
+import classificacao.Classificavel;
+
+public class Filme extends Titulo implements Classificavel {
     private final int anoLancamento;
     private final String diretor;
     private final int duracaoMinutos;
@@ -18,7 +20,12 @@ public class Filme extends Titulo {
         System.out.println("Diretor: " + this.diretor);
         System.out.println("Lançamento: " + this.anoLancamento);
         System.out.println("Duração: " + this.duracaoMinutos + " minutos");
-        System.out.println("Nota: " + this.mediaDeAvaliacoes());
+        System.out.println("Nota: " + this.formataAvaliacoes());
         System.out.println("Avaliações: " + this.totalAvaliacoes);
+    }
+
+    @Override
+    public int getClassificacao() {
+        return (int) (mediaDeAvaliacoes() / 2);
     }
 }

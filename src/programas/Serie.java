@@ -18,7 +18,7 @@ public class Serie extends Titulo {
         System.out.println("Temporadas: " + this.temporadas);
         System.out.println("Período de Exibição: " + formataPeriodoExibicao());
         System.out.println("Em andamento: " + formataAndamento());
-        System.out.println("Nota: " + mediaDeAvaliacoes());
+        System.out.println("Nota: " + this.formataAvaliacoes());
         System.out.println("Avaliações: " + this.totalAvaliacoes);
     }
 
@@ -44,5 +44,9 @@ public class Serie extends Titulo {
 
     private void atualizaPeriodoExibicao(int ano) {
         this.periodoDeExibicao[1] = ano;
+    }
+
+    protected String getNome() {
+        return this.nome;
     }
 }
