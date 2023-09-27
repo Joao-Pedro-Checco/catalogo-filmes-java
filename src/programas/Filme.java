@@ -1,6 +1,6 @@
 package programas;
 
-public class Filme extends Titulo{
+public class Filme extends Titulo {
     private final int anoLancamento;
     private final String diretor;
     private final int duracaoMinutos;

@@ -1,6 +1,6 @@
 package programas;
 
-public class Serie extends Titulo{
+public class Serie extends Titulo {
     private int[] periodoDeExibicao;
     private int temporadas;
     private boolean emAndamento;
