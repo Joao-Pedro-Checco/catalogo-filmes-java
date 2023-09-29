@@ -1,4 +1,4 @@
-package classificacao;
+package com.screenmatch.classificacao;
 
 public class FiltroRecomendacao {
     public void filtra(Classificavel classificavel) {

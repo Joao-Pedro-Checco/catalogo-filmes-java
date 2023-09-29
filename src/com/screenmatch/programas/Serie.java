@@ -1,4 +1,4 @@
-package programas;
+package com.screenmatch.programas;
 
 public class Serie extends Titulo {
     private int[] periodoDeExibicao;

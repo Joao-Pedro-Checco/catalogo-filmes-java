@@ -1,5 +1,7 @@
-import classificacao.FiltroRecomendacao;
-import programas.*;
+package com.screenmatch.main;
+
+import com.screenmatch.classificacao.FiltroRecomendacao;
+import com.screenmatch.programas.*;
 
 public class Main {
     public static Filme filme1;

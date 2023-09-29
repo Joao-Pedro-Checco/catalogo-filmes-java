@@ -1,6 +1,6 @@
-package programas;
+package com.screenmatch.programas;
 
-import classificacao.Classificavel;
+import com.screenmatch.classificacao.Classificavel;
 
 public class Episodio extends Titulo implements Classificavel {
     private final int numero;
