@@ -1,30 +1,21 @@
 package com.screenmatch.modelos;
 
+import com.screenmatch.excessoes.ErroDeConversaoDeAnoException;
+
 public class Serie extends Titulo {
     private int[] periodoDeExibicao;
     private int temporadas;
     private boolean emAndamento;
 
-    public Serie(String nome, int[] periodoDeExibicao, int temporadas, boolean emAndamento) {
-        super(nome);
+    public Serie(TituloOmdb tituloOmdb, int[] periodoDeExibicao, int temporadas, boolean emAndamento) throws ErroDeConversaoDeAnoException {
+        super(tituloOmdb);
         this.periodoDeExibicao = periodoDeExibicao;
         this.temporadas = temporadas;
         this.emAndamento = emAndamento;
     }
 
-    @Override
-    public void exibeFichaTecnica() {
-        System.out.println("Nome: " + this.nome);
-        System.out.println("Temporadas: " + this.temporadas);
-        System.out.println("Período de Exibição: " + formataPeriodoExibicao());
-        System.out.println("Em andamento: " + formataAndamento());
-        System.out.println("Nota: " + this.formataAvaliacoes());
-        System.out.println("Avaliações: " + this.totalAvaliacoes);
-    }
-
     private String formataAndamento() {
-        if (emAndamento) return "Sim";
-        return "Não";
+        return emAndamento ? "Sim" : "Não";
     }
 
     private String formataPeriodoExibicao() {
