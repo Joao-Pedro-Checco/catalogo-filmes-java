@@ -1,8 +1,6 @@
-package com.screenmatch.programas;
+package com.screenmatch.modelos;
 
-import com.screenmatch.classificacao.Classificavel;
-
-public class Episodio extends Titulo implements Classificavel {
+public class Episodio extends Titulo {
     private final int numero;
     private final String serie;
     private final int duracao;
@@ -22,11 +20,5 @@ public class Episodio extends Titulo implements Classificavel {
         System.out.println("Duração: " + this.duracao + " minutos");
         System.out.println("Nota: " + this.formataAvaliacoes());
         System.out.println("Avaliações: " + this.totalAvaliacoes);
-    }
-
-    @Override
-    public int getClassificacao() {
-        if (totalVisualizacoes > 100) return 4;
-        return 2;
     }
 }

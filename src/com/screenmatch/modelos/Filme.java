@@ -1,8 +1,9 @@
-package com.screenmatch.programas;
+package com.screenmatch.modelos;
 
-import com.screenmatch.classificacao.Classificavel;
+import com.google.gson.annotations.SerializedName;
 
-public class Filme extends Titulo implements Classificavel {
+public class Filme extends Titulo {
+    @SerializedName("Year")
     private final int anoLancamento;
     private final String diretor;
     private final int duracaoMinutos;
@@ -22,10 +23,5 @@ public class Filme extends Titulo implements Classificavel {
         System.out.println("Duração: " + this.duracaoMinutos + " minutos");
         System.out.println("Nota: " + this.formataAvaliacoes());
         System.out.println("Avaliações: " + this.totalAvaliacoes);
-    }
-
-    @Override
-    public int getClassificacao() {
-        return (int) (mediaDeAvaliacoes() / 2);
     }
 }

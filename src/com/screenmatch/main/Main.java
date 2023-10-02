@@ -1,66 +1,42 @@
 package com.screenmatch.main;
 
-import com.screenmatch.classificacao.FiltroRecomendacao;
-import com.screenmatch.programas.*;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.screenmatch.modelos.Titulo;
+import com.screenmatch.modelos.TituloOmdb;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.Scanner;
 
 public class Main {
-    public static Filme filme1;
-    public static Filme filme2;
-    public static Serie serie1;
-    public static Serie serie2;
-    public static Episodio episodio;
-    public static FiltroRecomendacao filtro;
 
-    public static void main(String[] args) {
-        filme1 = new Filme("O Poderoso Chefão", 1970, "Francis Ford Coppola", 180);
-        filme2 = new Filme("Drive", 2011, "Nicolas Winding Refn", 100);
-        serie1 = new Serie("Friends", new int[]{1994, 2004}, 10, false);
-        serie2 = new Serie("Breaking Bad", new int[]{2008, 2013}, 5, false);
-        episodio = new Episodio("Ozymandias", 14, serie2, 58);
-        filtro = new FiltroRecomendacao();
+    public static void main(String[] args) throws IOException, InterruptedException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite o nome do filme que quer pesquisar: ");
+        String movieName = scanner.nextLine().replace(" ", "+");
+        String link = String.format("https://www.omdbapi.com/?t=%s&apikey=9c1586bd", movieName);
 
-        System.out.println("Screen Match");
+        // --------------------------------- Requisição de API --------------------------------- //
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(link))
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        // System.out.println(response.body());
+        // ------------------------------------------------------------------------------------- //
 
-        filme1.avalia(10);
-        filme1.avalia(8.9);
-        filme2.avalia(9.7);
-        filme2.avalia(8.1);
-        filme1.avalia(8.7);
-        filme2.avalia(10);
-        filme2.avalia(10);
-
-        serie1.avalia(10);
-        serie1.avalia(8.9);
-        serie1.avalia(9.7);
-        serie1.avalia(8.1);
-        serie1.avalia(8.7);
-        serie1.avalia(10);
-        serie1.avalia(10);
-
-        serie2.avalia(10);
-        serie2.avalia(10);
-        serie2.avalia(9.9);
-        serie2.avalia(9.5);
-        serie2.avalia(9.7);
-        serie2.avalia(10);
-        serie2.avalia(10);
-
-        episodio.avalia(10);
-        episodio.avalia(10);
-        episodio.avalia(10);
-        episodio.avalia(10);
-        episodio.avalia(10);
-
-        filme1.exibeFichaTecnica();
-        System.out.println("-----------------------------------------------------");
-        filme2.exibeFichaTecnica();
-        System.out.println("-----------------------------------------------------");
-        serie1.exibeFichaTecnica();
-        System.out.println("-----------------------------------------------------");
-        serie2.exibeFichaTecnica();
-        System.out.println("-----------------------------------------------------");
-        episodio.exibeFichaTecnica();
-        System.out.println("-----------------------------------------------------");
-        filtro.filtra(filme2);
+        // --------------------------- Transformando JSON em objeto ---------------------------- //
+        Gson gson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .create();
+        // Titulo meuTitulo = gson.fromJson(response.body(), Titulo.class);
+        TituloOmdb meuTitulo = gson.fromJson(response.body(), TituloOmdb.class);
+        System.out.println(meuTitulo);
+        // ------------------------------------------------------------------------------------- //
     }
 }

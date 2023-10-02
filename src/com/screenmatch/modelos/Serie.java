@@ -1,4 +1,4 @@
-package com.screenmatch.programas;
+package com.screenmatch.modelos;
 
 public class Serie extends Titulo {
     private int[] periodoDeExibicao;
@@ -44,9 +44,5 @@ public class Serie extends Titulo {
 
     private void atualizaPeriodoExibicao(int ano) {
         this.periodoDeExibicao[1] = ano;
-    }
-
-    protected String getNome() {
-        return this.nome;
     }
 }
